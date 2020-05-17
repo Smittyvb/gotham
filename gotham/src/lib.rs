@@ -117,7 +117,7 @@ where
         .for_each(|socket| {
             let addr = match socket.peer_addr() {
                 Ok(x) => x,
-                Err(_) => Result::<_, ()>::Ok(()), // give up
+                Err(_) => return Result::<_, ()>::Ok(()), // give up
             };
             let service = gotham_service.connect(addr);
             let accepted_protocol = protocol.clone();
